@@ -1,13 +1,5 @@
-<!-- 
-  Custom Wazuh Detection Rules
-  Author: Jan Wojnicki & Iwo Sidorowicz
-  Context: Purple Team Simulation (Assume Breach)
--->
-
 <group name="local, syslog, sshd, windows, sysmon,">
 
-  <!-- MITRE T1003.001: OS Credential Dumping - LSASS Memory -->
-  <!-- Detects the usage of rundll32.exe combined with comsvcs.dll to dump process memory -->
   <rule id="100050" level="12">
     <if_group>sysmon_event1</if_group>
     <match>comsvcs.dll</match>
@@ -17,8 +9,6 @@
     </mitre>
   </rule>
 
-  <!-- MITRE T1490: Inhibit System Recovery (Ransomware Behavior) -->
-  <!-- Utilizes Regex to catch "delete shadows" argument regardless of the binary (vssadmin/wmic) -->
   <rule id="100051" level="12">
     <if_group>windows</if_group>
     <match>delete shadows</match>
